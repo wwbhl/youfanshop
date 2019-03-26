@@ -4,4 +4,7 @@ import com.youfan.model.User;
 
 public interface UserMapper {
     public User findUserInfo();
+    public void insertuserInfo(User user);
+    public void updateUser(User user);
+    public void findByUserid(int id);
 }
