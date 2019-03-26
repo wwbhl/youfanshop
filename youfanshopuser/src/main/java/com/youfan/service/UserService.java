@@ -12,4 +12,8 @@ public class UserService {
     public User findUserInfo(){
         return userDao.findUserInfo();
     }
+
+    public void inseruserInfo(User user){
+        userDao.inseruserInfo(user);
+    }
 }
