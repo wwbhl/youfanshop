@@ -9,11 +9,19 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     UserDao userDao;
+
     public User findUserInfo(){
         return userDao.findUserInfo();
     }
 
     public void inseruserInfo(User user){
         userDao.inseruserInfo(user);
+    }
+
+    public void updateUser(User user){
+        userDao.updateUser(user);
+    }
+    public User findByUserid(int id){
+        return userDao.findByUserid(id);
     }
 }

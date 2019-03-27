@@ -6,5 +6,5 @@ public interface UserMapper {
     public User findUserInfo();
     public void inseruserInfo(User user);
     public void updateUser(User user);
-    public void findByUserid(int id);
+    public User findByUserid(int id);
 }
