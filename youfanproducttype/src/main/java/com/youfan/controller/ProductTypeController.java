@@ -24,11 +24,33 @@ public class ProductTypeController {
     @RequestMapping(value = "/findProductytpeByid",method = RequestMethod.GET)
     public String findProductytpeByid(int id, Model model){
         ProductType productType = productTypeService.findProducttypeByid(id);
+        int pareid = productType.getParentid();
+        ProductType parentproductType = productTypeService.findProducttypeByid(pareid);
+        model.addAttribute("productType",productType);
+        model.addAttribute("parentproductType",parentproductType);
+        return "producttypeview";
+    }
+
+    @RequestMapping(value = "/toaddProductytpeByid",method = RequestMethod.GET)
+    public String toaddProductytpeByid(int id, Model model){
+        ProductType productType = productTypeService.findProducttypeByid(id);
         if(productType == null){
             productType = new ProductType();
             productType.setId(-1);
         }
         model.addAttribute("productType",productType);
         return "producttypeadd";
+    }
+    @RequestMapping(value = "/toupdateProducttype",method = RequestMethod.GET)
+    public String toupdateProducttype(int id, Model model){
+        ProductType productType = productTypeService.findProducttypeByid(id);
+        model.addAttribute("productType",productType);
+        return "producttypeupdate";
+    }
+
+    @RequestMapping(value = "/updateProducttype",method = RequestMethod.POST)
+    public String updateProducttype(ProductType productType){
+        productTypeService.updateProducttype(productType);
+        return "producttypeview";
     }
 }

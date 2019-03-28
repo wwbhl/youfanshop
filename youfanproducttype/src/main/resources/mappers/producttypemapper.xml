@@ -11,4 +11,7 @@
     <select id="findProducttypeByid" parameterType="int" resultType="com.youfan.model.ProductType">
         select * from producttype where id = #{value }
     </select>
+    <update id="updateProducttype" parameterType="com.youfan.model.ProductType">
+        update producttype set producttypename=#{producttypename},producttypedescription=#{producttypedescription} where id=#{id}
+    </update>
 </mapper>

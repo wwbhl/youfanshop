@@ -6,7 +6,7 @@
 </head>
 <body>
 父类：<span th:text="${productType.producttypename}"></span>
-<form>
+<form  action="insertProducttype" method="post">
     <input th:value="${productType.id}" type="hidden" name="parentid"/>
     产品类别名称：<input type="text" name="producttypename"/>
     产品类别描述：<input type="text" name="producttypedescription"/>
