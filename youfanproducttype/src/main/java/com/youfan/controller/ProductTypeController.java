@@ -2,12 +2,14 @@ package com.youfan.controller;
 
 import com.youfan.model.ProductType;
 import com.youfan.service.ProductTypeService;
+import com.youfan.vo.ProductTypeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
 
 
 @Controller
@@ -26,6 +28,10 @@ public class ProductTypeController {
         ProductType productType = productTypeService.findProducttypeByid(id);
         int pareid = productType.getParentid();
         ProductType parentproductType = productTypeService.findProducttypeByid(pareid);
+        if(parentproductType == null){
+            parentproductType = new ProductType();
+            parentproductType.setProducttypename("");
+        }
         model.addAttribute("productType",productType);
         model.addAttribute("parentproductType",parentproductType);
         return "producttypeview";
@@ -52,5 +58,17 @@ public class ProductTypeController {
     public String updateProducttype(ProductType productType){
         productTypeService.updateProducttype(productType);
         return "producttypeview";
+    }
+    @RequestMapping(value = "/listproducttype",method = RequestMethod.GET)
+    public String listproducttype(Model model){
+        ProductTypeVo productTypeVo = new ProductTypeVo();
+        List<ProductType> list = productTypeService.queryListbyVo(productTypeVo);
+        productTypeService.queryListbyVo(productTypeVo);
+        model.addAttribute("list", list);
+        return "list";
+    }
+    @RequestMapping(value = "/deleteProducttypeByid",method = RequestMethod.GET)
+    public void deleteProducttypeByid(int id){
+        productTypeService.deleteProducttypeByid(id);
     }
 }

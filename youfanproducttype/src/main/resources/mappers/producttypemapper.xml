@@ -14,4 +14,27 @@
     <update id="updateProducttype" parameterType="com.youfan.model.ProductType">
         update producttype set producttypename=#{producttypename},producttypedescription=#{producttypedescription} where id=#{id}
     </update>
+    <select id="queryListbyVo" parameterType="com.youfan.vo.ProductTypeVo" resultType="com.youfan.model.ProductType">
+        select * from producttype
+        <where>
+            <include refid="consutoql"></include>
+        </where>
+    </select>
+
+    <sql id="consutoql">
+        <if test="constomProducttype != null">
+            <if test="ConstomProducttype.producttypename != null and ConstomProducttype.producttypename !='">
+                and producttypename = "${ConstomProducttype.producttypename}"
+            </if>
+            <if test="ConstomProducttype.producttypedescription != null and ConstomProducttype.producttypedescription !='">
+                and producttypedescription = "${ConstomProducttype.producttypedescription}"
+            </if>
+            <if test="ConstomProducttype.typegrade != null and ConstomProducttype.typegrade !='">
+                and typegrade = "${ConstomProducttype.typegrade}"
+            </if>
+        </if>
+    </sql>
+    <delete id="deleteProducttypeByid" parameterType="com.youfan.model.ProductType">
+        delete from producttype where id=#{id}
+    </delete>
 </mapper>
