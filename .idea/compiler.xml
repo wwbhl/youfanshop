@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="youfanproducttype" />
         <module name="youfanshop" />
+        <module name="youfanshopmerchant" />
         <module name="youfanshopuser" />
       </profile>
     </annotationProcessing>
