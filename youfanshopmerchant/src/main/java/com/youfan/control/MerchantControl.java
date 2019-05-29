@@ -25,5 +25,5 @@ public class MerchantControl {
         merchantService.insertMerchant(merchant);
         return "merchantregister";
     }
-    
+
 }
